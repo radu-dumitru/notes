@@ -24,41 +24,25 @@
 
 ### EFI Partition
 
-`n` - add a new partition
-
-`+1G`
+`n` => `+1G`
 
 ### SWAP Partition
 
-`n`
-
-`+8G`
+`n` => `+8G`
 
 ### Root Partition
 
-`n`
-
-Use the default settings
+`n` => use the default settings
 
 ### Change the EFI partition type
 
-`t`
-
-`1` 
-
-`1` 
+`t` => `1` => `1` 
 
 ### Change the SWAP partition type
 
-`t`
+`t` => `2` => `19`
 
-`2`
-
-`19`
-
-### Write the table to the disk and exit
-
-`w`
+### Write the table to the disk and exit using `w`
 
 ## Format the partitions
 
