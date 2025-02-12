@@ -22,6 +22,8 @@
 
 `g` - create a GPT partition table
 
+Use `p` to check the partition layout
+
 ### EFI Partition
 
 `n` => `+1G`
@@ -62,7 +64,54 @@
 
 `mount /dev/sda1 /mnt/boot`
 
+## Install essential packages
 
+`pacstrap -K /mnt base linux linux-firmware vim`
 
+## Fstab
 
+`genfstab -U /mnt >> /mnt/etc/fstab`
 
+## Chroot
+
+`arch-chroot /mnt`
+
+## Time
+
+Check the Region and City by looking in the `/user/share/zoneinfo/` directory and then update the following command
+
+`ln -sf /usr/share/zoneinfo/Region/City /etc/localtime`
+
+`hwclock --systohc`
+
+## Localization
+
+`vim /etc/locale.gen`
+
+Uncomment `en_US.UTF-8` and save the file
+
+`locale-gen`
+
+`echo LANG=en_US.UTF-8 > /etc/locale.conf`
+
+`export LANG=EN_US.UTF-8`
+
+## Create the hostname
+
+`vim /etc/hostname` => archlinux and save
+
+## Root password
+
+`passwd`
+
+## Add a normal user
+
+`useradd -m username` vs `useradd -m -g users -G wheel,storage,power -s /bin/bash username`
+
+`passwd username`
+
+`usermod -aG wheel,audio,video,optical,storage username`
+
+`pacman -S sudo`
+
+`visudo` => uncomment the line `%wheel ALL=(ALL:ALL) ALL` to allow members of the wheel group to execute any command
