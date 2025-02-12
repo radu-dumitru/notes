@@ -122,10 +122,24 @@ Uncomment `en_US.UTF-8` and save the file
 
 `pacman -S efibootmgr dosfstools os-prober mtools`
 
-`mkdir /boot/EFI`
-
-`mount /dev/sda1 /boot/EFI`
-
-`grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck`
+`grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB`
 
 `grub-mkconfig -o /boot/grub/grub.cfg`
+
+## Install a network manager
+
+`pacman -S networkmanager`
+
+`systemctl enable NetworkManager.service`
+
+## Exit from chroot
+
+`exit`
+
+## Unmount
+
+`umount -R /mnt`
+
+## Restart the machine
+
+`reboot` (for a vm use `shutdown now` and remove the installation image)
