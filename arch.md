@@ -106,12 +106,26 @@ Uncomment `en_US.UTF-8` and save the file
 
 ## Add a normal user
 
-`useradd -m username` vs `useradd -m -g users -G wheel,storage,power -s /bin/bash username`
+`useradd -m username` 
 
 `passwd username`
 
-`usermod -aG wheel,audio,video,optical,storage username`
+`usermod -aG wheel,audio,video,optical,storage,power username`
 
 `pacman -S sudo`
 
 `visudo` => uncomment the line `%wheel ALL=(ALL:ALL) ALL` to allow members of the wheel group to execute any command
+
+## Install grub
+
+`pacman -S grub`
+
+`pacman -S efibootmgr dosfstools os-prober mtools`
+
+`mkdir /boot/EFI`
+
+`mount /dev/sda1 /boot/EFI`
+
+`grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck`
+
+`grub-mkconfig -o /boot/grub/grub.cfg`
