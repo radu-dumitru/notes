@@ -18,7 +18,7 @@
 
 `lsblk`
 
-`fdisk /dev/sda
+`fdisk /dev/sda`
 
 `g` - create a GPT partition table
 
@@ -76,7 +76,7 @@ Use the default settings
 
 `mkdir /mnt/boot`
 
-'mount /dev/sda1 /mnt/boot`
+`mount /dev/sda1 /mnt/boot`
 
 
 
