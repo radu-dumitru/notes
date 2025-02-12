@@ -26,4 +26,4 @@
 | Create a terminal as a window |  `:term` | 
 | Switch terminal to normal mode |  `CTRL + w + N` | 
 | Switch terminal to regular terminal |  `A` | 
-| Clsoe window |  `:q` | 
+| Close window |  `:q` | 
