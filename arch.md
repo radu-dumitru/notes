@@ -1,3 +1,19 @@
+## Verify signature
+
+Download the ISO PGP signature file from https://archlinux.org/download/
+
+Create a sha.txt file with the following content:
+
+`SHA256 (from https://archlinux.org/download/) archlinux-version-x86_64.iso`
+
+All the files (iso image, iso.sig file, sha.txt) need to be in the same folder
+
+Execute this command: `sha256sum -c sha.txt` 
+
+Check the ISO PGP signature by executing this command:
+
+`gpg --keyserver-options auto-key-retrieve --verify archlinux-version-x86_64.iso.sig`
+
 ## Verify the boot mode
 
 `cat /sys/firmware/efi/fw_platform_size`
