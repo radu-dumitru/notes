@@ -225,6 +225,6 @@ Also, check the HOOKS array and remove kms if it’s present (to avoid loading t
 
 `git clone https://github.com/radu-dumitru/arch-linux.git`
 
-`sudo chmod +x setup.sh'
+`sudo chmod +x setup.sh`
 
 `./setup.sh`
