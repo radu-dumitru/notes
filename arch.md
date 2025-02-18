@@ -82,7 +82,7 @@ Use `p` to check the partition layout
 
 ## Install essential packages
 
-`pacstrap -K /mnt base linux linux-firmware vim`
+`pacstrap -K /mnt base linux linux-firmware git vim`
 
 ## Fstab
 
@@ -110,7 +110,7 @@ Uncomment `en_US.UTF-8` and save the file
 
 `echo LANG=en_US.UTF-8 > /etc/locale.conf`
 
-`export LANG=EN_US.UTF-8`
+`export LANG=en_US.UTF-8`
 
 ## Create the hostname
 
@@ -148,6 +148,54 @@ Uncomment `en_US.UTF-8` and save the file
 
 `systemctl enable NetworkManager.service`
 
+
+## NVIDIA
+
+### Install Essential Packages
+
+`sudo pacman -S base-devel linux-headers dkms`
+
+### Install an AUR Helper (e.g., yay)
+
+`git clone https://aur.archlinux.org/yay.git`
+
+`cd yay`
+
+`makepkg -si`
+
+### Enable Multilib Support
+
+`sudo vim /etc/pacman.conf`
+
+[multilib]
+Include = /etc/pacman.d/mirrorlist - remove #
+
+### Install the NVIDIA 470xx Driver Packages from the AUR
+
+`yay -S nvidia-470xx-dkms nvidia-470xx-utils lib32-nvidia-470xx-utils nvidia-470xx-settings`
+
+### Configure DRM Kernel Mode Setting via GRUB
+
+`sudo vim /etc/default/grub`
+
+Find GRUB_CMDLINE_LINUX_DEFAULT and add the nvidia-drm parameters (quiet splash are already present)
+
+`GRUB_CMDLINE_LINUX_DEFAULT="quiet splash nvidia-drm.modeset=1 nvidia-drm.fbdev=1"`
+
+Update GRUB Configuration `sudo grub-mkconfig -o /boot/grub/grub.cfg`
+
+### Configure and Regenerate the Initramfs
+
+`sudo vim /etc/mkinitcpio.conf`
+
+Find the line MODULES=() and modify it to include the nvidia modules
+
+`MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)`
+
+Also, check the HOOKS array and remove kms if it’s present (to avoid loading the nouveau driver too early).
+
+`sudo mkinitcpio -P`
+
 ## Exit from chroot
 
 `exit`
@@ -159,3 +207,9 @@ Uncomment `en_US.UTF-8` and save the file
 ## Restart the machine
 
 `reboot` (for a vm use `shutdown now` and remove the installation image)
+
+## Verify the NVIDIA Driver Installation
+
+`nvidia-smi`
+
+
