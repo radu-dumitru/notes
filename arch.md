@@ -169,12 +169,12 @@ Uncomment `en_US.UTF-8` and save the file
 
 You need to find this:
 
-#[multilib]
+#[multilib]\
 #Include = /etc/pacman.d/mirrorlist
 
 Remove the # to uncomment them
 
-[multilib]
+[multilib]\
 Include = /etc/pacman.d/mirrorlist
 
 Update the package database: `sudo pacman -Syu`
