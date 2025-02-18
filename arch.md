@@ -167,8 +167,17 @@ Uncomment `en_US.UTF-8` and save the file
 
 `sudo vim /etc/pacman.conf`
 
+You need to find this:
+
+#[multilib]
+#Include = /etc/pacman.d/mirrorlist
+
+Remove the # to uncomment them
+
 [multilib]
-Include = /etc/pacman.d/mirrorlist - remove #
+Include = /etc/pacman.d/mirrorlist
+
+Update the package database: `sudo pacman -Syu`
 
 ### Install the NVIDIA 470xx Driver Packages from the AUR
 
