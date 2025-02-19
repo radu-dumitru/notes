@@ -82,7 +82,7 @@ Use `p` to check the partition layout
 
 ## Install essential packages
 
-`pacstrap -K /mnt base linux linux-firmware git vim`
+`pacstrap -K /mnt base linux-lts linux-firmware git vim`
 
 ## Fstab
 
@@ -148,12 +148,23 @@ Uncomment `en_US.UTF-8` and save the file
 
 `systemctl enable NetworkManager.service`
 
+## Exit from chroot
+
+`exit`
+
+## Unmount
+
+`umount -R /mnt`
+
+## Restart the machine
+
+`reboot` (for a vm use `shutdown now` and remove the installation image)
 
 ## NVIDIA
 
 ### Install Essential Packages
 
-`sudo pacman -S base-devel linux-headers dkms`
+`sudo pacman -S base-devel linux-lts-headers dkms`
 
 ### Install an AUR Helper (e.g., yay)
 
@@ -205,17 +216,9 @@ Also, check the HOOKS array and remove kms if it’s present (to avoid loading t
 
 `sudo mkinitcpio -P`
 
-## Exit from chroot
+### Reboot the system 
 
-`exit`
-
-## Unmount
-
-`umount -R /mnt`
-
-## Restart the machine
-
-`reboot` (for a vm use `shutdown now` and remove the installation image)
+`reboot`
 
 ## Verify the NVIDIA Driver Installation
 
