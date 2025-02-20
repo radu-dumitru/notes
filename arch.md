@@ -25,6 +25,36 @@ Check the ISO PGP signature by executing this command:
 
 `ping www.google.com`
 
+### Wireless network
+
+`iwctl`
+
+Find the wireless device name:
+
+`device list`
+
+If the device or its corresponding adapter is turned off, turn it on:
+
+`device name set-property Powered on`
+
+`adapter adapter set-property Powered on`
+
+Scan for network (the command will not output anything):
+
+`station name scan`
+
+List all available networks:
+
+`station name get-networks`
+
+Connect to a network:
+
+`station name connect SSID`
+
+Exit
+
+`Ctrl + d`
+
 ## Update the system clock
 
 `timedatectl set-ntp true`\
