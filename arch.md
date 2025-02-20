@@ -261,3 +261,11 @@ Also, check the HOOKS array and remove kms if it’s present (to avoid loading t
 `sudo chmod +x setup.sh`
 
 `./setup.sh`
+
+## Safely remove USB drive
+
+Example if my drive is /dev/sdb1
+
+`udisksctl unmount -b /dev/sdb1`
+
+`udisksctl power-off -b /dev/sdb`
